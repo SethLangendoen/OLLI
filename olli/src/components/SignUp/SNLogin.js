@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import '../../CSS/SignUp/SNLogin.css';
+import { useNavigate } from "react-router-dom";
 
 
 export default function SNLogin({ setUser, onLoginClick }) {
@@ -9,7 +10,7 @@ export default function SNLogin({ setUser, onLoginClick }) {
     const pureURLS = ["../../assets/SnImages/lion.png", "../../assets/SnImages/bear.png", "../../assets/SnImages/panda.png", "../../assets/SnImages/moose.png", "../../assets/SnImages/sheep.png", "../../assets/SnImages/tiger.png"]
     const animalURLs = [require("../../assets/SnImages/lion.png"), require("../../assets/SnImages/bear.png"), require("../../assets/SnImages/panda.png"), require("../../assets/SnImages/moose.png"), require("../../assets/SnImages/sheep.png"), require("../../assets/SnImages/tiger.png")]
     const [snSaveFailMessage, setSNSaveFailMessage] = useState('')
-
+    const navigate = useNavigate();
     const ANSanitizer = (event, setFunc) => {
         // Sanitization logic
         const userInput = event.target.value;
@@ -30,7 +31,7 @@ export default function SNLogin({ setUser, onLoginClick }) {
         } else { // If the image is already selected, remove it
             const updatedSelectedImages = selectedImages.filter(image => image.index !== index);
             setSelectedImages(updatedSelectedImages);
-            
+
         }
     };
 
@@ -44,7 +45,7 @@ export default function SNLogin({ setUser, onLoginClick }) {
             return
         }
 
-        const response = await fetch('login/SNUserLogin', {
+        const response = await fetch('/login/SNUserLogin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,9 +70,8 @@ export default function SNLogin({ setUser, onLoginClick }) {
         // successful login
         localStorage.setItem('user', JSON.stringify(responseData));
         setUser(responseData)
-
-
         setSNSaveFailMessage('');
+        navigate('/snPage')
     }
 
     return (
