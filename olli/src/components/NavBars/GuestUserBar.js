@@ -12,8 +12,8 @@ export default function GuestUserBar({ user }) {
     const buttons = [
         <img src={homeImage} alt="Logo" className="home" />,
         <NavButton key="1" name="Home" linkTo="/" />,
-        <img src={calender} alt="Logo" className="calendar" />,
-        <NavButton key="2" name="Calendar" linkTo="/calendar" />,
+        // <img src={calender} alt="Logo" className="calendar" />,
+        // <NavButton key="2" name="Calendar" linkTo="/calendar" />,
         <img src={info} alt="Logo" className="info" />,
         <NavButton key="3" name="About Us" linkTo="about-us-container" scrollLink={true} />,
         <img src={news} alt="Logo" className="newspaper" />,
@@ -28,5 +28,5 @@ export default function GuestUserBar({ user }) {
         <NavBar userSpecificButtons={buttons} user={user}></NavBar>
 
     );
-
 }
+

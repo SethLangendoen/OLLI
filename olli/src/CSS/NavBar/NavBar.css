@@ -30,6 +30,17 @@
   margin-bottom: 0.5rem;
 }
 
+.chat {
+  width: 2.1rem;
+  /* Adjust the width as per your requirement */
+  height: 2.1rem;
+  /* Adjust the height as per your requirement */
+  margin-right: -4.57rem;
+  margin-bottom: 0.5rem;
+}
+
+
+
 .info {
   width: 2rem;
   /* Adjust the width as per your requirement */

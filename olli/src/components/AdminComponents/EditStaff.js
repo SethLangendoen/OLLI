@@ -4,7 +4,7 @@ export default function EditStaff({ Update, changed }) {
     const [error, setError] = useState()
     const [user, setUser] = useState()
     const [staff, setStaff] = useState([])
-    console.log(staff)
+
 
     const [staffInfo, setStaffInfo] = useState({
         name: "",
@@ -18,7 +18,7 @@ export default function EditStaff({ Update, changed }) {
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
-            console.log('called')
+
             setUser(JSON.parse(storedUser));
         }
 

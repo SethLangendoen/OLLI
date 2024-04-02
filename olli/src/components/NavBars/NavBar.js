@@ -68,7 +68,7 @@ export default function NavBar({ userSpecificButtons, style, user }) {
           ))}
         </div>
 
-        {user ? <NavButton name="Logout" linkTo={"/login"} set /> : <div className='loginButton'>
+        {user ? <div onClick={() => { localStorage.setItem("user", "") }}><NavButton name="Logout" linkTo={"/login"} /></div> : <div className='loginButton'>
           <NavButton name="Login" linkTo="/login"></NavButton>
         </div>}
 

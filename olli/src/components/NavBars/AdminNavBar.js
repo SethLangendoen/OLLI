@@ -18,7 +18,14 @@ export default function AdminNavBar({ user }) {
             name={"User Settings"}
             linkTo={"/adminuserSettings"}
             scrollLink={false}
+        />,
+        <NavButton
+            name={"Manage Newsletters"}
+            linkTo={"/manageNewsletters"}
+            scrollLink={false}
         />
+
+
         // Add more NavButton components as needed for other functionalities
     ];
 

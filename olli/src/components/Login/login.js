@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useFetcher, useNavigate } from "react-router-dom";
 
 import SignUpPage from '../SignUp/signUp';
 import SNLogin from '../SignUp/SNLogin';
@@ -44,6 +44,38 @@ function LoginPage({ setUser }) {
     setIsSNLoginClicked(false);
     setIsLoginClicked(true);
   };
+  async function fetcher(url, method, accessToken, body, setter, errorHandler) {
+    let response;
+    if (method === "GET") {
+      response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+        },
+
+      })
+    }
+    else {
+      response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(body)
+      })
+    }
+
+    if (!response.ok) {
+      errorHandler()
+      return;
+    }
+    else if (setter) {
+      const data = await response.json()
+      setter(data)
+    }
+  }
 
   async function handleLogin() {
     const response = await fetch(`/login/${email}/${password}`)
@@ -68,7 +100,11 @@ function LoginPage({ setUser }) {
     if (user.user.user_type === "sn") navigate("/sn")
     if (user.user.user_type === "parent") navigate("/parentPage")
     if (user.user.user_type === "admin") navigate("/adminPage")
-    if (user.user.user_type === "staff") navigate("/staff")
+    if (user.user.user_type === "staff") {
+      fetcher("/staff/updateStaffStatus", "PUT", user.accessToken, { email: user.user.email, isOnline: 1 }, null, () => alert("Could Not set Staff Status"))
+      navigate("/staff")
+
+    }
   }
 
   const EmailSanitizer = (event, setFunc) => {

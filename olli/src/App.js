@@ -16,6 +16,8 @@ import ParentCalendar from './components/ParentComponents/ParentCalendar.js';
 import ParentEvents from './components/ParentComponents/ParentEvents.js';
 import ChatRoom from './components/Pages/ChatRoom.js';
 import StaffPage from './components/Pages/StaffPage.js';
+import ManageNewslettersPage from './components/Pages/ManageNewsletterspage.js';
+
 
 
 export default function App() {
@@ -59,6 +61,16 @@ export default function App() {
           exact path='/adminuserSettings'
           element={
             <AdminUserSettingPage />
+          } />
+        <Route
+          exact path='/manageNewsletters'
+          element={
+            <ManageNewslettersPage />
+          } />
+        <Route
+          exact path='/admin-page'
+          element={
+            <AdminPage />
           } />
 
         <Route

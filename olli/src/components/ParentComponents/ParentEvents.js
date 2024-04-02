@@ -77,7 +77,7 @@ export default function EventsList({ events, user }) {
     const signUpParticipant = async (eventTitle) => {
 
         if (!pick_time || !drop_time || !username) {
-            console.log("This is hte user: " + user.user);
+            console.log("This is the user: " + user.user);
 
             console.log(' Sign up information: ' + pick_time + ' ' + drop_time + ' ' + username);
             alert('you must enter all information to sign up for an event!');
@@ -100,15 +100,16 @@ export default function EventsList({ events, user }) {
             });
             if (!response.ok) {
                 console.error("Failed to sign up participant");
-                alert('participant sign up');
+                alert('Error singing up participant');
                 return;
             }
             const data = await response.json();
-
             if (data.error) {
                 console.error("Error signing up participant");
                 return;
             }
+
+            alert('successful user signup')
 
             console.log('This is the data. ' + JSON.stringify(data.message))
 
@@ -133,6 +134,7 @@ export default function EventsList({ events, user }) {
     }
 
 
+
     return (
         <div>
             {events && (
@@ -142,56 +144,40 @@ export default function EventsList({ events, user }) {
                         {events.map((event) => (
 
                             <div className='event' key={event.id}>
-                                <h2>{event.title}</h2>
-                                <p>{event.descrip}</p>
-                                <p>{event.short_descrip}</p>
-                                <p>Start: {event.start.toLocaleString()}</p>
-                                <p>End: {event.end.toLocaleString()}</p>
-                                <p>Image Path: {event.path} </p>
+                                <div>
+                                    <h2>{event.title}</h2>
+                                    <p>{event.descrip}</p>
+                                    <p>{event.short_descrip}</p>
+                                    <p>Start: {event.start.toLocaleString()}</p>
+                                    <p>End: {event.end.toLocaleString()}</p>
+                                    {/* <p>Image Path: {event.path} </p> */}
 
-                                <p>Interested in this event? <button onClick={() => handleSignup(event.title)}>Sign Up</button></p>
-                                <p>Drop off time: </p> <input type='time' onChange={(e) => handleDrop(e.target.value)}></input>
-                                <p>Pick up time: </p> <input type='time' onChange={(e) => handlePick(e.target.value)}></input>
-                                <p>Loved one's username: </p> <input type='text' onChange={(e) => handleUsername(e.target.value)}></input>
+                                    <p>Drop off time: </p> <input type='time' onChange={(e) => handleDrop(e.target.value)}></input>
+                                    <p>Pick up time: </p> <input type='time' onChange={(e) => handlePick(e.target.value)}></input>
+                                    <p>Loved one's username: </p> <input type='text' onChange={(e) => handleUsername(e.target.value)}></input>
+                                    <p>Sign up your loved one <button onClick={() => handleSignup(event.title)}>Sign Up</button></p>
+                                </div>
+                                <div>
+                                    {/** Iterate through images and find the one corresponding to event.path */}
+                                    {event.path && file.map((imagePath) => {
+                                        const imageName = imagePath.split('/')[3].split('.')[0];
+                                        const imageSuffix = imagePath.split('.')[2]
 
-                                {/* <h1>The data list should be right under here!</h1> */}
-                                {/* <div style={{ backgroundColor: "blue" }}>
-                                    <datalist id='data-list'>
-                                        Signed up participants
-                                        <option value='randomTest'></option>
-                                        <p>Currently  Signed up users: </p>
-                                        {participants && participants.map((part) => {
-                                            console.log('in loop');
-                                            if (part.title == event.title) {
-                                                <div>
-                                                    {console.log("creating an option tag" + part.username)}
-                                                    <option value={part.username}></option>
-                                                    <p>{part.username}</p>
-                                                </div>
-                                            }
-                                            return null;
-                                        })}
-                                    </datalist>
-                                </div> */}
+                                        if (event.path.includes(imageName + '.' + imageSuffix)) {
 
-                                {/** Iterate through images and find the one corresponding to event.path */}
-                                {event.path && file.map((imagePath) => {
-                                    const imageName = imagePath.split('/')[3].split('.')[0];
-                                    const imageSuffix = imagePath.split('.')[2]
+                                            return (
+                                                <img
+                                                    key={imagePath}
+                                                    src={imagePath}
 
-                                    if (event.path.includes(imageName + '.' + imageSuffix)) {
+                                                    style={{ maxWidth: '100%' }}
+                                                />
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
 
-                                        return (
-                                            <img
-                                                key={imagePath}
-                                                src={imagePath}
-
-                                                style={{ maxWidth: '100%' }}
-                                            />
-                                        );
-                                    }
-                                    return null;
-                                })}
                             </div>
                         ))}
                     </div>

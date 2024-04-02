@@ -151,3 +151,10 @@
 .event-details button:hover {
     background-color: #6c5c73;
 }
+
+.event {
+
+    display: flex;
+    justify-content: space-between;
+
+}

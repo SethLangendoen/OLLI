@@ -43,6 +43,39 @@ async function updateStaff(name, email, wage, clockIn, clockOut, isOnline) {
         throw error;
     }
 }
+async function updateClockIn(email, ClockIN) {
+    try {
+        const query = 'UPDATE staff SET clockIn = ? WHERE email = ?';
+        const values = [ClockIN, email];
+        await connection.query(query, values);
+        console.log('Staff updated successfully.');
+    } catch (error) {
+        console.error('Error updating staff:', error);
+        throw error;
+    }
+}
+async function updateClockOut(email, ClockOut) {
+    try {
+        const query = 'UPDATE staff SET clockOut = ? WHERE email = ?';
+        const values = [ClockOut, email];
+        await connection.query(query, values);
+        console.log('Staff updated successfully.');
+    } catch (error) {
+        console.error('Error updating staff:', error);
+        throw error;
+    }
+}
+async function updateStatus(email, isOnline) {
+    try {
+        const query = 'UPDATE staff SET isOnline = ? WHERE email = ?';
+        const values = [isOnline, email];
+        await connection.query(query, values);
+        console.log('Staff updated successfully.');
+    } catch (error) {
+        console.error('Error updating staff:', error);
+        throw error;
+    }
+}
 
 async function getStaffByEmail(email) {
     try {
@@ -88,11 +121,16 @@ async function getAllStaff() {
 }
 
 
+
+
 module.exports = {
     updateStaff,
     deleteStaff,
     addStaff,
     getAllStaffByOnlineStatus,
     getStaffByEmail,
-    getAllStaff
+    getAllStaff,
+    updateClockIn,
+    updateClockOut,
+    updateStatus
 }

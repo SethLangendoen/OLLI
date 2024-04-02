@@ -5,7 +5,7 @@ import NavButton from "./NavButton.js";
 export default function ParentNavBar({ user }) {
     const buttons = [
         <NavButton
-            name={"Calender"}
+            name={"Calender/Events"}
             linkTo={"/parentCalender"}
             scrollLink={false}
         />,
@@ -19,11 +19,11 @@ export default function ParentNavBar({ user }) {
             linkTo={"/parentuserSettings"}
             scrollLink={false}
         />,
-        <NavButton
-            name={"Events"}
-            linkTo={"/parentEvents"}
-            scrollLink={false}
-        />,
+        // <NavButton
+        //     name={"Events"}
+        //     linkTo={"/parentEvents"}
+        //     scrollLink={false}
+        // />,
 
         <NavButton
             name={"Chat"}

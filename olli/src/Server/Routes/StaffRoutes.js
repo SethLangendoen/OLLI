@@ -34,6 +34,33 @@ router.get('/getAll', auth, async (req, res) => {
     }
 });
 
+router.put('/clockIn', auth, async (req, res) => {
+    const time = req.body.time;
+    const email = req.body.email
+
+    try {
+        await staffDB.updateClockIn(email, time);
+
+        res.json();
+    } catch (error) {
+        console.error('Error adding staff:', error);
+        res.status(500).send('Error Getting All Staff');
+    }
+});
+router.put('/clockOut', auth, async (req, res) => {
+    const time = req.body.time;
+    const email = req.body.email
+
+    try {
+        await staffDB.updateClockOut(email, time);
+
+        res.json();
+    } catch (error) {
+        console.error('Error adding staff:', error);
+        res.status(500).send('Error Getting All Staff');
+    }
+});
+
 
 
 // Delete Staff
@@ -59,6 +86,18 @@ router.put('/updateStaff', auth, async (req, res) => {
         const isOnline = req.body.isOnline;
 
         await staffDB.updateStaff(name, email, wage, clockIn, clockOut, isOnline);
+        res.status(200).send('Staff updated successfully.');
+    } catch (error) {
+        console.error('Error updating staff:', error);
+        res.status(500).send('Error updating staff.');
+    }
+});
+router.put('/updateStaffStatus', auth, async (req, res) => {
+    try {
+        const email = req.body.email;
+        const isOnline = req.body.isOnline;
+
+        await staffDB.updateStatus(email, isOnline);
         res.status(200).send('Staff updated successfully.');
     } catch (error) {
         console.error('Error updating staff:', error);
