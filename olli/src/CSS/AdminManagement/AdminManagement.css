@@ -1,13 +1,76 @@
-.admin-container {
+.manage-user-container {
     max-width: 800px;
     margin: auto;
     font-family: 'Roboto', sans-serif;
 }
 
-.admin-title {
+.manage-user-title {
     color: #6c5c73;
     font-size: 24px;
 }
+
+.admin-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.admin-title {
+    margin-top: 3rem;
+    color: #6c5c73;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.user-info .input {
+    width: 100%; /* Adjusting for padding */
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #6c5c73;
+    border-radius: 5px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-container {
+    background-color: #d5d5d5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.user-container:hover {
+    background-color: #bcbcbc;
+}
+
+.user-info {
+    margin-top: 10px;
+}
+
+.editButtonss {
+    background-color: #6c5c73;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px auto 0; /* Center button vertically and horizontally */
+    cursor: pointer;
+    display: block;
+    width: fit-content; /* Adjust width to content */
+}
+
+
+.editButtonss:hover {
+    background-color: #4b3f50; /* Darken the button on hover */
+}
+.editButtonss:not(:disabled):hover {
+    cursor: pointer;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////*/
 
 .user-info.input {
     width: calc(100% - 0px); /* Adjusting for padding */
@@ -133,4 +196,8 @@
 
 .info-value {
     color: #555;
+}
+ 
+.hire-title{
+    margin-top: 8rem;
 }

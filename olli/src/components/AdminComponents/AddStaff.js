@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react'
+// AddStaff.js
+
+import React, { useState, useEffect } from 'react';
+import '../../CSS/AdminManagement/AdminManagement.css'; // css file
+
 
 export default function AddStaff({ Update }) {
     const [user, setUser] = useState()
@@ -91,55 +95,59 @@ export default function AddStaff({ Update }) {
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder='Enter Full Name'
-                name="name"
-                value={staffInfo.name}
-                onChange={(e) => { handleChange(e, /[^ a-zA-Z]/g) }}
-            />
-            <input
-                type="text"
-                placeholder='Enter Email'
-                name="email"
-                value={staffInfo.email}
-                onChange={(e) => { handleChange(e, /[^a-zA-Z0-9@.]/g) }}
-            />
-            <input
-                type="text"
-                placeholder='Enter Password'
-                name="password"
-                value={userInfo.password}
-                onChange={(e) => { handleChangeUser(e, /[^a-zA-Z0-9]/g) }}
-            />
-            <input
-                type="text"
-                placeholder='Enter Wage'
-                name="wage"
-                value={staffInfo.wage}
-                onChange={(e) => { handleChange(e, /[^0-9.]/g) }}
-            />
-            <input
-                type="text"
-                placeholder='Enter Phone Number'
-                name="phone_number"
-                value={userInfo.phone_number}
-                onChange={(e) => { handleChangeUser(e, /[^0-9]/g) }}
-            />
-            {user && <button onClick={() => {
+        <div className="add-staff-container">
+            <div className="hire-input-group">
+                <input
+                    type="text"
+                    placeholder="Enter Full Name"
+                    name="staffname"
+                    value={staffInfo.name}
+                    onChange={(e) => {
+                        handleChange(e, /[^ a-zA-Z]/g);
+                    }}
+                />
+                <input
+                    type="text"
+                    placeholder='Enter Email'
+                    name="staffemail"
+                    value={staffInfo.email}
+                    onChange={(e) => { handleChange(e, /[^a-zA-Z0-9@.]/g) }}
+                />
+                <input
+                    type="text"
+                    placeholder='Enter Password'
+                    name="staffpassword"
+                    value={userInfo.password}
+                    onChange={(e) => { handleChangeUser(e, /[^a-zA-Z0-9]/g) }}
+                />
+                <input
+                    type="text"
+                    placeholder='Enter Wage'
+                    name="staffwage"
+                    value={staffInfo.wage}
+                    onChange={(e) => { handleChange(e, /[^0-9.]/g) }}
+                />
+                <input
+                    type="text"
+                    placeholder='Enter Phone Number'
+                    name="staff_phone_number"
+                    value={userInfo.phone_number}
+                    onChange={(e) => { handleChangeUser(e, /[^0-9]/g) }}
+                />
+                {user && <button className="hire-button" onClick={() => {
 
-                if (userInfo.email === "" || userInfo.password === "") {
+                    if (userInfo.email === "" || userInfo.password === "") {
 
-                    setError("You Must Enter At least the email and Password ")
-                    return
-                }
-                fetcher("/signUp/addUser", "POST", user.accessToken, [userInfo], null, errorHandler("Could Not Add Staff Member", setError))
-                fetcher("/staff/addStaff", "POST", user.accessToken, staffInfo, null, errorHandler("Could Not Add Staff Member", setError));
-                Update(Math.random() * 1000000);
+                        setError("You Must Enter At least the email and Password ")
+                        return
+                    }
+                    fetcher("/signUp/addUser", "POST", user.accessToken, [userInfo], null, errorHandler("Could Not Add Staff Member", setError))
+                    fetcher("/staff/addStaff", "POST", user.accessToken, staffInfo, null, errorHandler("Could Not Add Staff Member", setError));
+                    Update(Math.random() * 1000000);
 
-            }}>Hire Staff Member</button>}
-            <h3>{error}</h3>
+                }}>Hire Staff Member</button>}
+                {error && <div className="error">{error}</div>}
+            </div>
         </div>
     )
 }

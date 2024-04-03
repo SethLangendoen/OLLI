@@ -79,8 +79,8 @@ export default function EditStaff({ Update, changed }) {
     };
 
     return (
-        <div className="admin-container">
-            <h2 className="admin-title">Select a Staff Member to Edit</h2>
+        <div className="manage-user-container">
+            <h2 className="manage-user-title">Select a Staff Member to Edit</h2>
             {staff && (
                 <select className="user-info input" onChange={handleSelectChange}>
                     <option value="none" selected disabled hidden>

@@ -120,7 +120,7 @@ export default function ManageStaff() {
     return (
         <div className="manage-staff-container">
             <AdminNavBar user={user} />
-            <h1 className="section-title">Hire Staff</h1>
+            <h1 className="hire-title">Hire A Staff</h1>
             <AddStaff Update={setUpdate} className="staff-form" />
 
             <br />
@@ -142,13 +142,17 @@ export default function ManageStaff() {
             <h1 class="custom-h1">Edit Staff</h1>
 
             <EditStaff Update={setUpdate} changed={update} />
+
             <br />
+            <hr data-aos="fade-right" className="divider2" />
             <h1>Online Staff</h1>
             {onlineStaff && onlineStaff.map(staff => (
 
                 <StaffCard email={staff.email} name={staff.name} wage={staff.wage} tHours={staff.clockIn && staff.clockOut ? getTimeDifference(staff.clockIn.split(" ")[4] + " " + staff.clockIn.split(" ")[5], staff.clockOut.split(" ")[4] + " " + staff.clockOut.split(" ")[5]) : ""} url={"./emptyImage.png"} />
             ))}
             <h3>{onlineError}</h3><br />
+            
+            <hr data-aos="fade-right" className="divider2" />
             <h1>Offline Staff</h1>
             {offlineStaff && offlineStaff.map(staff => (
                 <StaffCard email={staff.email} name={staff.name} wage={staff.wage} tHours={staff.clockIn && staff.clockOut ? getTimeDifference(staff.clockIn.split(" ")[4] + " " + staff.clockIn.split(" ")[5], staff.clockOut.split(" ")[4] + " " + staff.clockOut.split(" ")[5]) : ""} url={"./emptyImage.png"} />

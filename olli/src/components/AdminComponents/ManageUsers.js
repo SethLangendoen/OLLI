@@ -169,10 +169,10 @@ export default function ManageUsers(user) {
                                     />
                                 </p>
 
-                                <button onClick={() => { updateUser(user) }} className="editButtons">
+                                <button onClick={() => { updateUser(user) }} className="editButtonss">
                                     Update User
                                 </button>
-                                <button onClick={() => { deleteUser(user.email) }} className="editButtons">
+                                <button onClick={() => { deleteUser(user.email) }} className="editButtonss">
                                     Delete User
                                 </button>
                             </div>
