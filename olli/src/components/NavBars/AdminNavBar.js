@@ -11,17 +11,22 @@ export default function AdminNavBar({ user }) {
         />,
         <NavButton
             name={"Manage Users"}
-            linkTo={"admin-page"}
-            scrollLink={true}
+            linkTo={"/adminPage"}
+            scrollLink={false}
         />,
         <NavButton
-            name={"User Settings"}
-            linkTo={"/adminuserSettings"}
+            name={"Manage Staff"}
+            linkTo={"/manageStaff"}
             scrollLink={false}
         />,
         <NavButton
             name={"Manage Newsletters"}
             linkTo={"/manageNewsletters"}
+            scrollLink={false}
+        />,
+        <NavButton
+            name={"User Settings"}
+            linkTo={"/adminuserSettings"}
             scrollLink={false}
         />
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import ParentNavBar from '../NavBars/ParentNavBar'
 import './ChatRoom.css'; // Import the CSS file
 
 const socket = io('http://localhost:3000'); // Replace with your server URL
@@ -10,7 +11,15 @@ function ChatRoom() {
     const [notification, setNotification] = useState("");
     const [senderName, setSenderName] = useState(""); // Added state for sender's name
     const [isConnected, setIsConnected] = useState(false); // State to track connection status
+    const [user, setUser] = useState([])
 
+    useEffect(() => {
+
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
     // Messages States
     const [message, setMessage] = useState("");
     const [messagesReceived, setMessagesReceived] = useState([]);
@@ -49,55 +58,58 @@ function ChatRoom() {
 
     // Render chat interface if connected, otherwise render input fields and button
     return (
-        <div className="chat-room">
-            <div className="chat-container">
-                {!isConnected ? (
-                    <div className="connect-form">
-                        <h1>Join A Room:</h1>
-                        <input
-                            className="name-input"
-                            placeholder="Your Name..."
-                            value={senderName}
-                            onChange={(event) => {
-                                setSenderName(event.target.value);
-                            }}
-                        />
-                        <input
-                            className="room-input"
-                            placeholder="e.g., 1 or 2"
-                            value={room}
-                            onChange={(event) => {
-                                setRoom(event.target.value);
-                            }}
-                        />
-                        <button className="connect-button" onClick={joinRoom}>Connect</button>
-                    </div>
-                ) : (
-                    <>
-                        <div className="notification">{notification}</div>
-                        <div className="message-container">
-                            <h1>OLLI Message:</h1>
-                            {/* Render the received messages */}
-                            {messagesReceived.map((msg, index) => (
-                                <div className={`message ${msg.senderName === senderName ? 'own-message' : ''}`} key={index}>
-                                    <span className="sender">{msg.senderName}:</span> {msg.message}
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="chat-inputs">
+        <div>
+            <ParentNavBar user={user} />
+            <div className="chat-room">
+                <div className="chat-container">
+                    {!isConnected ? (
+                        <div className="connect-form">
+                            <h1>Join A Room:</h1>
                             <input
-                                className="message-input"
-                                placeholder="Message..."
-                                value={message}
+                                className="name-input"
+                                placeholder="Your Name..."
+                                value={senderName}
                                 onChange={(event) => {
-                                    setMessage(event.target.value);
+                                    setSenderName(event.target.value);
                                 }}
                             />
-                            <button className="send-button" onClick={sendMessage}>Send</button>
+                            <input
+                                className="room-input"
+                                placeholder="e.g., 1 or 2"
+                                value={room}
+                                onChange={(event) => {
+                                    setRoom(event.target.value);
+                                }}
+                            />
+                            <button className="connect-button" onClick={joinRoom}>Connect</button>
                         </div>
-                    </>
-                )}
+                    ) : (
+                        <>
+                            <div className="notification">{notification}</div>
+                            <div className="message-container">
+                                <h1>OLLI Message:</h1>
+                                {/* Render the received messages */}
+                                {messagesReceived.map((msg, index) => (
+                                    <div className={`message ${msg.senderName === senderName ? 'own-message' : ''}`} key={index}>
+                                        <span className="sender">{msg.senderName}:</span> {msg.message}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="chat-inputs">
+                                <input
+                                    className="message-input"
+                                    placeholder="Message..."
+                                    value={message}
+                                    onChange={(event) => {
+                                        setMessage(event.target.value);
+                                    }}
+                                />
+                                <button className="send-button" onClick={sendMessage}>Send</button>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

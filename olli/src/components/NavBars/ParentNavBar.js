@@ -11,8 +11,8 @@ export default function ParentNavBar({ user }) {
         />,
         <NavButton
             name={"My Family Members"}
-            linkTo={"manageSNContainer"}
-            scrollLink={true}
+            linkTo={"/parentPage"}
+            scrollLink={false}
         />,
         <NavButton
             name={"User Settings"}

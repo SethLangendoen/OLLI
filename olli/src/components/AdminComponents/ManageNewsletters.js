@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PdfLoader from "./PDFLoader"
 import axios from 'axios'
+import AdminNavBar from '../NavBars/AdminNavBar'
 
 
 
@@ -183,18 +184,10 @@ export default function ManageNewsletters() {
         fetchPastLetters()
 
     }
-
-
-
-
-
-
     return (
         <div>
-
+            <AdminNavBar user={user} />
             <h1> Manage Newsletters</h1>
-
-
             <h2>Current NewsLetters</h2>
 
             {currentletter && <PdfLoader fileName={require("../../assets/Newsletters/" + currentletter.image_name)} />}
@@ -204,10 +197,6 @@ export default function ManageNewsletters() {
             {pdfFiles && pdfFiles.map((letter, index) => (
 
                 <div key={letter.image_name}>
-
-
-
-
                     <PdfLoader fileName={pdfFiles[index]} />
                     {pdfFiles.length > 0 && <button onClick={() => { setCurrent(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf") }}>Set {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} To Current Letter</button>}
                     {pdfFiles.length > 0 && <button onClick={() => { deleteLetter(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf") }}>Delete {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} </button>}

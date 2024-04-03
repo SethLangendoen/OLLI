@@ -1,42 +1,32 @@
 .admin-container {
     max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: auto;
     font-family: 'Roboto', sans-serif;
 }
 
 .admin-title {
-    margin-top: 3rem;
     color: #6c5c73;
     font-size: 24px;
-    margin-bottom: 20px;
 }
 
-.user-container {
-    background-color: #d5d5d5;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.user-container:hover {
-    background-color: #bcbcbc;
-}
-
-.user-info {
-    margin-top: 10px;
-}
-
-.user-info .input {
-    width: 100%; /* Adjusting for padding */
+.user-info.input {
+    width: calc(100% - 0px); /* Adjusting for padding */
     margin-bottom: 10px;
     padding: 8px;
     border: 1px solid #6c5c73;
     border-radius: 5px;
-    color: black;
+    color: black; /* Text color */
     font-family: 'Roboto', sans-serif;
+    background-color: white; /* Background color */
+}
+
+.user-info.input:hover {
+    border-color: black;
+}
+
+/* Style for the dropdown menu options */
+.user-info.input option {
+    color: black;
 }
 
 .editButtons {
@@ -47,6 +37,8 @@
     padding: 10px 20px;
     margin-top: 10px;
     cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Centering the button */
 }
 
 .editButtons:hover {
@@ -55,4 +47,90 @@
 
 .editButtons:not(:disabled):hover {
     cursor: pointer;
+}
+
+/*//////////////////////////////////////////////////////////////*/
+
+.staff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adjust as needed */
+    width: 60%; /* Set width to 60% */
+    margin: 0 auto; /* Center the staff list */
+}
+
+.staff-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.staff-item button {
+    padding: 5px 10px;
+    background-color: #6c5c73; /* Custom color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Make buttons block-level for centering */
+    margin: 1rem auto 0; /* Center buttons with 2rem margin-top */
+}
+
+
+.staff-item button:hover {
+    background-color: #4b3f50; /* Custom color on hover */
+}
+
+.delete-error {
+    color: #ff0000; /* Red color for error message */
+}
+
+.divider2 {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.custom-h1 {
+    font-size: 28px; /* Increased font size */
+    color: #6c5c73; /* Custom color */
+    margin-top: 2rem; /* Adjust margin top as needed */
+}
+
+/*//////////////////////////////////////////////////////////////*/
+/* StaffCard component styles */
+
+.staff-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.staff-name {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.staff-image {
+    width: 100px; /* Adjust image width as needed */
+    border-radius: 50%; /* Make image circular */
+    margin-bottom: 10px;
+}
+
+.staff-info {
+    margin-bottom: 5px;
+}
+
+.info-label {
+    font-weight: bold;
+    color: black;
+}
+
+.info-value {
+    color: #555;
 }

@@ -17,6 +17,7 @@ import ParentEvents from './components/ParentComponents/ParentEvents.js';
 import ChatRoom from './components/Pages/ChatRoom.js';
 import StaffPage from './components/Pages/StaffPage.js';
 import ManageNewslettersPage from './components/Pages/ManageNewsletterspage.js';
+import ManageStaff from './components/AdminComponents/ManageStaff.js';
 
 
 
@@ -68,6 +69,11 @@ export default function App() {
             <ManageNewslettersPage />
           } />
         <Route
+          exact path='/manageStaff'
+          element={
+            <ManageStaff />
+          } />
+        <Route
           exact path='/admin-page'
           element={
             <AdminPage />
@@ -82,6 +88,12 @@ export default function App() {
           exact path='/parentCalender'
           element={
             <ParentCalendar user={user} setUser={setUser} />
+          } />
+
+        <Route
+          exact path='/manageSNContainer'
+          element={
+            <ParentPage user={user} setUser={setUser} />
           } />
         <Route
           exact path='/parentEvents'

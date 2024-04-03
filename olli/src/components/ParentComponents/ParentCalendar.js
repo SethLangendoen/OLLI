@@ -12,12 +12,19 @@ const eventPhotoPath = "../../assets/EventPhotos";
 
 const localizer = momentLocalizer(moment);
 
-const MyCalendar = ({ user }) => {
+const MyCalendar = ({ user: initialUser }) => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const updatedImageContext = require.context('../../assets/EventPhotos', false, /\.(png|jpg|jpeg|gif|svg)$/);
-    const [file, setFile] = useState(updatedImageContext.keys().map(updatedImageContext))
-    // console.log(user);
+    const [file, setFile] = useState(updatedImageContext.keys().map(updatedImageContext));
+    const [user, setUser] = useState(initialUser); // Declaring the user state and setUser
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
     useEffect(() => {
         fetchEvents(); // load all of the events into the calendar. 
@@ -69,7 +76,7 @@ const MyCalendar = ({ user }) => {
 
     return (
         <div>
-            <ParentNavBar />
+            <ParentNavBar user={user} />
             <div>
                 <h1 className="calendarTitle">Welcome to the OLLI Calendar!</h1>
             </div>

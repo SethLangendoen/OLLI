@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import StaffCard from './StaffCard'
 import AddStaff from './AddStaff'
 import EditStaff from './EditStaff'
+import AdminNavBar from '../NavBars/AdminNavBar'
 import "../../CSS/AdminManagement/StaffMangement.css"
+
 
 export default function ManageStaff() {
     const [user, setUser] = useState()
@@ -116,20 +118,29 @@ export default function ManageStaff() {
 
 
     return (
-        <div>
-            <h1>Hire Staff</h1>
-            <AddStaff Update={setUpdate} />
+        <div className="manage-staff-container">
+            <AdminNavBar user={user} />
+            <h1 className="section-title">Hire Staff</h1>
+            <AddStaff Update={setUpdate} className="staff-form" />
+
             <br />
-            <h1>Fire Staff</h1>
-            {allStaff && allStaff.map(staff => (
-                <div>
-                    <StaffCard email={staff.email} name={staff.name} wage={staff.wage} tHours={staff.clockIn && staff.clockOut ? getTimeDifference(staff.clockIn.split(" ")[4] + " " + staff.clockIn.split(" ")[5], staff.clockOut.split(" ")[4] + " " + staff.clockOut.split(" ")[5]) : ""} />
-                    <button onClick={() => { fetcher(`/staff/deleteStaff/${staff.email}`, "DELETE", user.accessToken, {}, null, errorHandler(`Cannot Delete ${staff.name}`, setDeleteError)); setUpdate(Math.random() * 1000000); }}>Fire {staff.name}</button>
-                </div>
-            ))}
-            <h3>{deleteError}</h3>
+            <hr data-aos="fade-right" className="divider2" />
+            <h1 class="custom-h1">Fire Staff</h1>
+
+            <div className="staff-list">
+                {allStaff && allStaff.map(staff => (
+                    <div className="staff-item" key={staff.email}>
+                        <StaffCard email={staff.email} name={staff.name} wage={staff.wage} tHours={staff.clockIn && staff.clockOut ? getTimeDifference(staff.clockIn.split(" ")[4] + " " + staff.clockIn.split(" ")[5], staff.clockOut.split(" ")[4] + " " + staff.clockOut.split(" ")[5]) : ""} />
+                        <button onClick={() => { fetcher(`/staff/deleteStaff/${staff.email}`, "DELETE", user.accessToken, {}, null, errorHandler(`Cannot Delete ${staff.name}`, setDeleteError)); setUpdate(Math.random() * 1000000); }}>Fire {staff.name}</button>
+                    </div>
+                ))}
+            </div>
+            <h3 className="delete-error">{deleteError}</h3>
+
             <br />
-            <h1>Edit Staff</h1>
+            <hr data-aos="fade-right" className="divider2" />
+            <h1 class="custom-h1">Edit Staff</h1>
+
             <EditStaff Update={setUpdate} changed={update} />
             <br />
             <h1>Online Staff</h1>

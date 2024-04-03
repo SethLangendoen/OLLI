@@ -72,7 +72,7 @@ export default function NavBar({ userSpecificButtons, style, user }) {
                 </div>
 
                 {user ? <img src={require("../../assets/NavBarIcons/profile.png")} className="profile" /> : <div className='loginButton'>
-                    <NavButton name="Login" linkTo="/login"></NavButton>
+                    <NavButton name="Logout" linkTo="/login"></NavButton>
                 </div>}
 
 
@@ -91,7 +91,7 @@ export default function NavBar({ userSpecificButtons, style, user }) {
                 </div>
 
                 {user ? <img src={require("../../assets/NavBarIcons/profile.png")} className="profile" /> : <div className='loginButton'>
-                    <NavButton name="Login" linkTo="/login"></NavButton>
+                    <NavButton name="Logout" linkTo="/login"></NavButton>
                 </div>}
 
 

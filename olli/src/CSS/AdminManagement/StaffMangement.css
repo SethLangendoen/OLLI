@@ -1,10 +1,52 @@
-input,
-select,
-h1,
-h2 {
-    color: black;
-}
+/* StaffManagement.css */
 
-select option {
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h2 {
     color: black;
-}
+    margin-bottom: 20px;
+  }
+  
+  select,
+  input[type="text"],
+  button {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #9c87a5;
+  }
+  
+  select:hover,
+  input[type="text"]:hover,
+  button:hover {
+    border-color: white;
+  }
+  
+  input[type="text"],
+  select {
+    width: 60%; /* Set width to 60% */
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  

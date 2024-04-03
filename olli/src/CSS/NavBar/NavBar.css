@@ -30,42 +30,31 @@
   margin-bottom: 0.5rem;
 }
 
-.chat {
-  width: 2.1rem;
-  /* Adjust the width as per your requirement */
-  height: 2.1rem;
-  /* Adjust the height as per your requirement */
-  margin-right: -4.57rem;
-  margin-bottom: 0.5rem;
-}
-
-
-
 .info {
   width: 2rem;
   /* Adjust the width as per your requirement */
   height: 2rem;
   /* Adjust the height as per your requirement */
   margin-right: -4.6rem;
-  margin-top: 0.2rem;
+  margin-top: -0.3rem;
 }
 
 .email {
-  width: 1.9rem;
+  width: 1.8rem;
   /* Adjust the width as per your requirement */
-  height: 1.9rem;
+  height: 1.8rem;
   /* Adjust the height as per your requirement */
   margin-right: -4.5rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
 }
 
-.events {
+.eventss {
   width: 2.1rem;
   /* Adjust the width as per your requirement */
   height: 2.1rem;
   /* Adjust the height as per your requirement */
   margin-right: -4.5rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
 }
 
 .newspaper {
@@ -74,7 +63,7 @@
   height: 2.1rem;
   /* Adjust the height as per your requirement */
   margin-right: -4.5rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
 }
 
 /* Define the keyframes for the rotation animation */

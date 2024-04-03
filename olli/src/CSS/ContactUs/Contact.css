@@ -61,9 +61,26 @@
 .header1 {
   margin-top: 3%;
   text-align: center;
+  font-weight: bold;
 }
 
 .header2 {
+  text-align: center;
+  margin-bottom: 2%;
+  font-weight: bold;
+}
+
+.header3 {
+  text-align: center;
+}
+
+.header4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.header5 {
   text-align: center;
   margin-bottom: 2%;
 }

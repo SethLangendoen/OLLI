@@ -37,8 +37,6 @@ const io = socketIo(server);
 //app.use(express.static('public'));
 
 io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
-
     socket.on("join_room", (data) => {
         socket.join(data);
         io.to(data).emit("user_joined", { user: socket.id, room: data });

@@ -21,6 +21,14 @@ export default function ContactUs() {
 				<h1 id="ContactTitle">Reach Our Team</h1>
 				<p className="header1">We love questions and feedback – and we’re always happy to help!</p>
 				<p className="header2">Here are some ways to contact us.</p>
+				<p className="header4">Our office hours:</p>
+				<p className="header3">Monday: 8:00am-4:00pm</p>
+				<p className="header3">Tuesday: 8:00am-4:00pm</p>
+				<p className="header3">Wednesday: 10:00am-4:00pm</p>
+				<p className="header3">Thursday: 8:00am-4:00pm</p>
+				<p className="header3">Friday: 8:00am-4:00pm</p>
+				<p className="header3">Saturday: CLOSED</p>
+				<p className="header5">Sunday: CLOSED</p>
 				<div id="SalesSupportContainer">
 					<div id="SalesDiv">
 						<h2>Talk to our Staffs</h2>
