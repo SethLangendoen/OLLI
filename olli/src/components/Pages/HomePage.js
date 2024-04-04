@@ -6,7 +6,9 @@ import NewsLetterSection from "../HomeComponents/NewsLetters/NewsletterSection";
 import GuestUserBar from "../NavBars/GuestUserBar";
 import AboutUs from "../HomeComponents/AboutUS/AboutUsSection";
 import ContactUs from "../HomeComponents/ContactUs/ContactUs";
+import Reviews from "../HomeComponents/Review/Reviews.js";
 import { images } from "../HomeComponents/ImageSlider/Images.js";
+
 
 export default function HomePage({ user }) {
   return (
@@ -31,6 +33,11 @@ export default function HomePage({ user }) {
       <div className='contactUs'>
         <ContactUs />
       </div>
+      <div className='reviews'>
+        <Reviews user={user} />
+      </div>
+
+
     </div>
   )
 }

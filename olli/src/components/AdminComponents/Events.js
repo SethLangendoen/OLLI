@@ -12,7 +12,7 @@ export default function EventsList({ events, user }) {
     useEffect(() => {
         // this will be used to populate the currently signed up users. 
         setParts();
-    }, [])
+    }, [user])
 
     // get the participants for each event: 
     const setParts = async () => {
@@ -74,18 +74,22 @@ export default function EventsList({ events, user }) {
 
                                 {/** Iterate through images and find the one corresponding to event.path */}
                                 {event.path && file.map((imagePath) => {
-                                    const imageName = imagePath.split('/')[3].split('.')[0];
-                                    const imageSuffix = imagePath.split('.')[2]
+                                    try {
+                                        const imageName = imagePath.split('/')[3].split('.')[0];
+                                        // const imageSuffix = imagePath.split('.')[2]
 
-                                    if (event.path.includes(imageName + '.' + imageSuffix)) {
-                                        return (
-                                            <img
-                                                key={imagePath}
-                                                src={imagePath}
-                                                alt={event.title}
-                                                className="event-image"
-                                            />
-                                        );
+                                        if (event.path.includes(imageName)) {
+                                            return (
+                                                <img
+                                                    key={imagePath}
+                                                    src={imagePath}
+                                                    alt={event.title}
+                                                    className="event-image"
+                                                />
+                                            );
+                                        }
+                                    } catch (e) {
+                                        console.log('Error' + e);
                                     }
                                     return null;
                                 })}

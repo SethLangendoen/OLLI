@@ -28,7 +28,7 @@ const MyCalendar = ({ user: initialUser }) => {
 
     useEffect(() => {
         fetchEvents(); // load all of the events into the calendar. 
-    }, []) // empty array to run only once (when the component mounts)
+    }, [user]) // empty array to run only once (when the component mounts)
 
     const fetchEvents = async () => {
         try {

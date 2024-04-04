@@ -21,10 +21,10 @@ import ManageStaff from './components/AdminComponents/ManageStaff.js';
 
 
 
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
-  console.log(events)
 
   return (
     <Router>

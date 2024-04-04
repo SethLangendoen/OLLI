@@ -16,9 +16,7 @@ export default function EventSection() {
     <div className="eventSection">
       <h1 className="etitle" data-aos-once="true" data-aos="fade-up">Upcoming Events</h1>
 
-      <EventSlider
-
-      />
+      <EventSlider />
 
     </div>
   )

@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
 import EventCard from './EventCard.js';
 
+
 export default function EventSlider() {
   const [cards, setCards] = useState([]);
   const updatedImageContext = require.context('../../../assets/EventPhotos', false, /\.(png|jpg|jpeg|gif|svg)$/);
@@ -32,23 +33,14 @@ export default function EventSlider() {
 
   function createCards(events) {
     const cardsArray = events.map(event => {
-      // Assuming each event has a unique identifier like event.id
-      // const imagePath = updatedImageContext.keys().find(imagePath =>
-      //   imagePath.includes(event.id)
-      // );
       var tempImagePath = null;
       file.map((imagePath) => {
         const imageName = imagePath.split('/')[3].split('.')[0];
         const imageSuffix = imagePath.split('.')[2]
-        console.log('imageName: ' + imageName + ' imageSuffix:' + imageSuffix);
         if (event.path.includes(imageName + '.' + imageSuffix)) {
-          console.log('found a matching image');
           tempImagePath = imagePath
-          console.log('The image path: ' + tempImagePath);
         }
       })
-
-
 
       return (
         <SwiperSlide key={event.id}>

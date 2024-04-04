@@ -153,8 +153,33 @@
 }
 
 .event {
-
     display: flex;
     justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
 
+.eventInfo {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.eventImage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventImage img {
+    width: 500px;
+    height: 500px;
+    /* Adjust the max-width to your preference */
+    height: auto;
+    margin-right: 10px;
+}
+
+.eventInfo p {
+    margin-bottom: 5px;
 }

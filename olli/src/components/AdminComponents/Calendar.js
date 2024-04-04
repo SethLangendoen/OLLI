@@ -13,6 +13,7 @@ const eventPhotoPath = "../../assets/EventPhotos";
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ user: initialUser }) => {
+
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const updatedImageContext = require.context('../../assets/EventPhotos', false, /\.(png|jpg|jpeg|gif|svg)$/);
@@ -28,9 +29,13 @@ const MyCalendar = ({ user: initialUser }) => {
 
   useEffect(() => {
     fetchEvents(); // load all of the events into the calendar. 
-  }, []) // empty array to run only once (when the component mounts)
+
+    console.log('fetching all events')
+  }, [user])
+
 
   const fetchEvents = async () => {
+    console.log("This is the user: " + initialUser);
     try {
       const response = await fetch(`/events/getAllEvents`, {
         method: "GET",
@@ -48,8 +53,10 @@ const MyCalendar = ({ user: initialUser }) => {
         console.error("Error getting all events");
         return;
       }
-      console.log('This is the data. ' + JSON.stringify(data))
-      setEvents(JSON.stringify(data)); // [{}] // data is an array of objects I believe. 
+
+
+      console.log('This is the data: ' + JSON.stringify(data))
+      // setEvents(JSON.stringify(data)); // [{}] // data is an array of objects I believe. 
       // createEvents(JSON.stringify(data));
       if (Array.isArray(data)) { // Check if data is an array
 
@@ -59,8 +66,9 @@ const MyCalendar = ({ user: initialUser }) => {
           end: new Date(event.end)
         }));
 
+
         setEvents(eventsWithDateObjects); // Set events to the array data
-        // createEvents(eventsWithDateObjects);
+
       } else {
         console.error("Data is not an array:", data);
       }
@@ -109,16 +117,7 @@ const MyCalendar = ({ user: initialUser }) => {
           title: title,
         })
       });
-      // if (!response.ok) {
-      //   console.error("Failed to delete user");
-      //   return;
-      // }
 
-      // const data = await response.json();
-      // if (data.error) {
-      //   console.error("Error deleting event");
-      //   return;
-      // }
       fetchEvents();
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -328,17 +327,20 @@ const MyCalendar = ({ user: initialUser }) => {
             <input type="file" onChange={handleFileChange} />
 
             {selectedEvent.path && file.map((imagePath) => {
-              const imageName = imagePath.split('/')[3].split('.')[0];
-              const imageSuffix = imagePath.split('.')[2]
-
-              if (selectedEvent.path.includes(imageName + '.' + imageSuffix)) {
-                return (
-                  <img
-                    key={imagePath}
-                    src={imagePath}
-                    style={{ maxWidth: '100%' }}
-                  />
-                );
+              try {
+                const imageName = imagePath.split('/')[3].split('.')[0];
+                // const imageSuffix = imagePath.split('.')[2]
+                if (selectedEvent.path.includes(imageName)) {
+                  return (
+                    <img
+                      key={imagePath}
+                      src={imagePath}
+                      style={{ maxWidth: '100%' }}
+                    />
+                  );
+                }
+              } catch (e) {
+                console.log('Issues' + e);
               }
               return null;
             })}
@@ -347,7 +349,7 @@ const MyCalendar = ({ user: initialUser }) => {
 
             <button onClick={() => handleDeleteEvent(selectedEvent)}>Delete Event</button>
             <button onClick={() => handleUpdatePhoto(selectedEvent)}>Update To Selected Photo</button>
-            {/* <button onClick={() => handleAddEvent(selectedEvent)}>Save and publish this event</button> */}
+            <button onClick={() => handleAddEvent(selectedEvent)}>Save and publish this event</button>
           </div>
         )}
 

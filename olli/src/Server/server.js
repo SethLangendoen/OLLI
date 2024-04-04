@@ -10,7 +10,10 @@ const adminControlRoutes = require('./Routes/AdminControls.js');
 const emailRoutes = require("./Routes/EmailRoutes.js");
 const staffRoutes = require("./Routes/StaffRoutes.js")
 const newsletterRoutes = require('./Routes/NewsLetter.js')
+const waiverRoutes = require("./Routes/WaiverRoutes.js")
+const signedWaiverRoutes = require("./Routes/SignedWaiverRoutes.js")
 const cors = require('cors');
+const reviewRoutes = require("./Routes/ReviewRoutes.js");
 require('dotenv').config();
 
 
@@ -29,6 +32,9 @@ app.use("/adminControls", adminControlRoutes);
 app.use("/email", emailRoutes);
 app.use("/staff", staffRoutes);
 app.use('/newsletters', newsletterRoutes)
+app.use("/waiver", waiverRoutes)
+app.use("/signed", signedWaiverRoutes)
+app.use("/review", reviewRoutes)
 
 
 const server = http.createServer(app); // Create a HTTP server instance

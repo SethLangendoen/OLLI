@@ -88,7 +88,7 @@ function LoginPage({ setUser }) {
 
 
     const user = await response.json()
-    console.log(user);
+
     if (parseInt(user.user.isVerified) === 0) {
       alert("Verify Your Email First")
       return

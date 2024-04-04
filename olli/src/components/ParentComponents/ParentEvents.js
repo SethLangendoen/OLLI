@@ -1,6 +1,7 @@
 // This component will display all events and allow for event signup.
 import "../../CSS/Calendar/events.css"
 
+import EventWaiver from "./EventWaiver";
 // path to event images folder: 
 import { useState, useEffect } from "react";
 
@@ -12,6 +13,9 @@ export default function EventsList({ events, user }) {
     const [drop_time, setDrop_time] = useState(''); // dropoff date. 
     const [username, setUsername] = useState(''); // stores the username of the SN user that is signing up
     const [participants, setParticipants] = useState([]);
+    const [showDetails, setShowDetails] = useState([]);
+
+
     // const [tempEventParts, setTempEventParts] = useState([]);
 
 
@@ -132,6 +136,15 @@ export default function EventsList({ events, user }) {
     function handleUsername(username) {
         setUsername(username);
     }
+    const handleToggleDetails = (eventTitle) => {
+        setShowDetails(prevState => {
+            if (prevState.includes(eventTitle)) {
+                return prevState.filter(title => title !== eventTitle); // Remove eventId if it's already in the array
+            } else {
+                return [...prevState, eventTitle]; // Add eventId if it's not in the array
+            }
+        });
+    };
 
 
 
@@ -144,7 +157,7 @@ export default function EventsList({ events, user }) {
                         {events.map((event) => (
 
                             <div className='event' key={event.id}>
-                                <div>
+                                <div className='eventInfo'>
                                     <h2>{event.title}</h2>
                                     <p>{event.descrip}</p>
                                     <p>{event.short_descrip}</p>
@@ -152,28 +165,45 @@ export default function EventsList({ events, user }) {
                                     <p>End: {event.end.toLocaleString()}</p>
                                     {/* <p>Image Path: {event.path} </p> */}
 
-                                    <p>Drop off time: </p> <input type='time' onChange={(e) => handleDrop(e.target.value)}></input>
-                                    <p>Pick up time: </p> <input type='time' onChange={(e) => handlePick(e.target.value)}></input>
-                                    <p>Loved one's username: </p> <input type='text' onChange={(e) => handleUsername(e.target.value)}></input>
-                                    <p>Sign up your loved one <button onClick={() => handleSignup(event.title)}>Sign Up</button></p>
+                                    <button onClick={() => handleToggleDetails(event.title)}>
+                                        {showDetails.includes(event.title) ? 'Hide Details' : 'Show Details'}
+                                    </button>
+                                    {/* Additional information */}
+                                    {showDetails.includes(event.title) && (
+                                        <>
+                                            <p>Drop off time: <input type='time' onChange={(e) => handleDrop(e.target.value)}></input></p>
+                                            <p>Pick up time: <input type='time' onChange={(e) => handlePick(e.target.value)}></input></p>
+                                            <p>Loved one's username: <input type='text' onChange={(e) => handleUsername(e.target.value)}></input></p>
+                                            <EventWaiver eventTitle={event.title} />
+                                            <p>Sign up your loved one <button onClick={() => handleSignup(event.title)}>Sign Up</button></p>
+                                        </>
+                                    )}
+
+
+
                                 </div>
-                                <div>
+                                <div clasName='eventImage'>
                                     {/** Iterate through images and find the one corresponding to event.path */}
                                     {event.path && file.map((imagePath) => {
-                                        const imageName = imagePath.split('/')[3].split('.')[0];
-                                        const imageSuffix = imagePath.split('.')[2]
+                                        console.log("Image Path: " + imagePath + ' Event Path ' + event.path);
+                                        try {
+                                            const imageName = imagePath.split('/')[3].split('.')[0];
+                                            if (event.path.includes(imageName)) {
 
-                                        if (event.path.includes(imageName + '.' + imageSuffix)) {
+                                                return (
+                                                    <img
+                                                        key={imagePath}
+                                                        src={imagePath}
 
-                                            return (
-                                                <img
-                                                    key={imagePath}
-                                                    src={imagePath}
-
-                                                    style={{ maxWidth: '100%' }}
-                                                />
-                                            );
+                                                        style={{ maxWidth: '100%' }}
+                                                    />
+                                                );
+                                            }
+                                        } catch (e) {
+                                            console.log('error ' + e)
                                         }
+                                        // const imageSuffix = imagePath.split('.')[2]
+
                                         return null;
                                     })}
                                 </div>

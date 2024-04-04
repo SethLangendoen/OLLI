@@ -4,6 +4,8 @@
   position: relative;
 }
 
+
+
 .eventSection .etitle {
   transform: translateX(1.25rem);
   /* 20px / 16px = 1.25rem */
@@ -21,6 +23,11 @@
   margin-top: 2rem;
   white-space: nowrap;
   /* Prevent text from wrapping */
+}
+
+.eventSlider {
+  margin-top: 500px;
+  position: relative;
 }
 
 

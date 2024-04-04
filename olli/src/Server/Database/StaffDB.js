@@ -3,7 +3,7 @@ const connection = mysql.createConnection({
     //socketPath: '/cloudsql/se3350-group-40-416518:us-central1:olli',
     host: "localhost",
     user: 'root',
-    password: 'Rl87542476!',
+    password: 'Sabi5437',
     database: 'olli',
 }).promise();
 

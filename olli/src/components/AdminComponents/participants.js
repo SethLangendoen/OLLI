@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import "../../CSS/Calendar/events.css"
+
+
 
 const Participants = ({ participants, title }) => {
     const [showParticipants, setShowParticipants] = useState(false);
 
 
-    console.log('The event' + title);
+
 
     return (
         <div>
@@ -22,7 +25,7 @@ const Participants = ({ participants, title }) => {
                             // Filter participants based on the event title
                             title === part.title &&
                             ( // Removed curly braces here
-                                <div key={index}>
+                                <div className='participant' key={index}>
                                     <li backgroundColor='black'>{part.username}</li>
                                 </div>
                             )

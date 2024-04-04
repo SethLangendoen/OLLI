@@ -1,0 +1,12 @@
+.reviewsContainer {
+    width: 100%;
+    min-height: 100px;
+    background-color: red;
+    display: flex;
+    flex-direction: vertical;
+}
+
+.reviewTextBox {
+    width: 500px;
+    height: 200px;
+}

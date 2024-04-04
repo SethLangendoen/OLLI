@@ -17,10 +17,17 @@ body {
   margin-top: 9rem;
 }
 
-
 .eventSection .swiper-slide img {
   display: block;
   width: 100%;
-
   object-fit: cover;
+}
+
+.eventSlider {
+  padding-top: 100px;
+}
+
+
+.cardContainer img {
+  width: 100%;
 }

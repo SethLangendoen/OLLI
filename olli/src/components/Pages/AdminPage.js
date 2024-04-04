@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import AdminNavBar from '../NavBars/AdminNavBar'
 import ManageUsers from '../AdminComponents/ManageUsers'
-//import ManageNewsletters from '../AdminComponents/ManageNewsletters'
-//import ManageStaff from '../AdminComponents/ManageStaff'
-// import Calendar from '../Calendar'; // Import the Calendar component
-// import UserSettings from '../UserSettings'; // Import the UserSettings component
+import WaiverBuilder from '../WaiverComponents/WaiverBuilder'
 
 export default function AdminPage() {
     const [snUsers, setSNUsers] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
     const [user, setUser] = useState([])
     const [activeComponent, setActiveComponent] = useState('ManageUsers');
+
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -48,6 +46,7 @@ export default function AdminPage() {
         <div className='admin-page'>
             <AdminNavBar user={user} />
             <ManageUsers user={user} />
+            <WaiverBuilder />
         </div>
     );
 }

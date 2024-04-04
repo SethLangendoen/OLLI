@@ -13,11 +13,41 @@ export default function NavBar({ userSpecificButtons, style, user }) {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isNavbarFaded, setNavbarFaded] = useState(false);
 
-
   const toggleBurgerMenu = () => {
     setBurgerMenuOpen(!isBurgerMenuOpen);
   };
+  async function fetcher(url, method, accessToken, body, setter, errorHandler) {
+    let response;
+    if (method === "GET") {
+      response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+        },
 
+      })
+    }
+    else {
+      response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(body)
+      })
+    }
+
+    if (!response.ok) {
+      errorHandler()
+      return;
+    }
+    else if (setter) {
+      const data = await response.json()
+      setter(data)
+    }
+  }
 
 
   const handleScroll = React.useCallback(() => {
@@ -68,7 +98,7 @@ export default function NavBar({ userSpecificButtons, style, user }) {
           ))}
         </div>
 
-        {user ? <div onClick={() => { localStorage.setItem("user", "") }}style={{ textAlign: 'left', margin: 30, padding: 0 }}><NavButton name="Logout" linkTo={"/login"} /></div> : <div className='loginButton'>
+        {user ? <div onClick={() => { localStorage.setItem("user", ""); fetcher("/staff/updateStaffStatus", "PUT", user.accessToken, { email: user.user.email, isOnline: 0 }, null, () => alert("Could Not set Staff Status")) }} style={{ textAlign: 'left', margin: 30, padding: 0 }}><NavButton name="Logout" linkTo={"/login"} /></div> : <div className='loginButton'>
           <NavButton name="Login" linkTo="/login"></NavButton>
         </div>}
 

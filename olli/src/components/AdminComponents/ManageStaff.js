@@ -10,7 +10,6 @@ export default function ManageStaff() {
     const [user, setUser] = useState()
     const [update, setUpdate] = useState()
     const [onlineStaff, setOnlineStaff] = useState([])
-    console.log(onlineStaff)
 
     const [onlineError, setOnlineError] = useState("")
     const [offlineStaff, setOfflineStaff] = useState([])
@@ -74,6 +73,7 @@ export default function ManageStaff() {
             setter(data)
         }
     }
+
     function getTimeDifference(startTime, endTime) {
         // Parse start time
         var startParts = startTime.split(":");
@@ -151,7 +151,7 @@ export default function ManageStaff() {
                 <StaffCard email={staff.email} name={staff.name} wage={staff.wage} tHours={staff.clockIn && staff.clockOut ? getTimeDifference(staff.clockIn.split(" ")[4] + " " + staff.clockIn.split(" ")[5], staff.clockOut.split(" ")[4] + " " + staff.clockOut.split(" ")[5]) : ""} url={"./emptyImage.png"} />
             ))}
             <h3>{onlineError}</h3><br />
-            
+
             <hr data-aos="fade-right" className="divider2" />
             <h1>Offline Staff</h1>
             {offlineStaff && offlineStaff.map(staff => (
