@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
+import "./waiver.css";
 import axios from 'axios'
 
 export default function EventWaiver({ eventTitle }) {
@@ -90,26 +91,30 @@ export default function EventWaiver({ eventTitle }) {
     }
 
     return (
-        <div>
+        <div className="event-waiver-container">
             {waiver && close ? (
                 <div>
-                    <h2>{waiver.title}</h2>
-                    <p>{waiver.description}</p>
-                    <h2>Date:</h2>
-                    <h2>Parent Signature</h2>
-                    <SignatureCanvas
-                        penColor="black"
-                        canvasProps={{ width: 300, height: 150, color: "white", className: 'signature-canvas' }}
-                        ref={signatureRef}
-                        onBegin={() => setIsSignatureEmpty(false)}
-                        onEnd={handleSignatureChange}
-                    />
-                    <button onClick={handleSignatureClear}>Clear Signature</button>
-                    <button onClick={handleSubmit}>Submit Waiver</button>
+                    <h2 className="event-waiver-title">{waiver.title}</h2>
+                    <p className="event-waiver-description">{waiver.description}</p>
+                    <h2 className="event-waiver-date">Parent Signature:</h2>
+                    <div className="signature-container">
+                        <SignatureCanvas
+                            penColor="black"
+                            canvasProps={{ width: 300, height: 150, color: "white", className: 'signature-canvas' }}
+                            ref={signatureRef}
+                            onBegin={() => setIsSignatureEmpty(false)}
+                            onEnd={handleSignatureChange}
+                        />
+                    </div>
+                    <div className="button-container">
+                        <button className="signature-button" onClick={handleSignatureClear}>Clear Signature</button>
+                        <button className="signature-button" onClick={handleSubmit}>Submit Waiver</button>
+                    </div>
                 </div>
             ) : (
-                <p>{error}</p>
+                <p className="error-message">{error}</p>
             )}
         </div>
     );
+
 }

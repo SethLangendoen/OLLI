@@ -280,7 +280,7 @@ const SignUpPage = ({ onLoginClick }) => {
           />
 
           <input type="checkbox" id="consentCheckbox" name="consent" />
-          <label for="consentCheckbox">I agree to recieve emails</label>
+          <label for="consentCheckbox">I agree to receive emails</label>
 
           <p className="SNFailMessage">{saveFailMessage}</p>
           <button className="addSNbutton" onClick={() => openAddUserContent()}>Add Your Loved Ones</button>

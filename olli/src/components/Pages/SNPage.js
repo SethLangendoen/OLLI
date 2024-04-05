@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
-import NavBar from "../NavBars/SnNavBar";
+import SnNavBar from "../NavBars/SnNavBar";
 import useSpeechSynthesis from '../HomeComponents/Helpers/TextToSpeech';
 import "./snPage.css"; // Import the CSS file
 
@@ -20,7 +20,7 @@ export default function HomePage({ user }) {
 
   return (
     <div>
-      <NavBar user={user} />
+      <SnNavBar user={user} />
       <div className="game-container">
         <h2>Games</h2>
         <div className="gameBtn-container">

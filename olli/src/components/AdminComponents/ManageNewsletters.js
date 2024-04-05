@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import PdfLoader from "./PDFLoader"
-import axios from 'axios'
-import AdminNavBar from '../NavBars/AdminNavBar'
-
+import React, { useEffect, useState } from 'react';
+import PdfLoader from "./PDFLoader";
+import axios from 'axios';
+import AdminNavBar from '../NavBars/AdminNavBar';
+import "./ManageNewsletters.css";
 
 
 export default function ManageNewsletters() {
@@ -185,32 +185,25 @@ export default function ManageNewsletters() {
 
     }
     return (
-        <div>
+        <div className="manage-newsletters-container">
             <AdminNavBar user={user} />
-            <h1> Manage Newsletters</h1>
-            <h2>Current NewsLetters</h2>
-
+            <h1 className="page-title">Manage Newsletters</h1>
+            <h2 className="section-title">Current NewsLetters</h2>
             {currentletter && <PdfLoader fileName={require("../../assets/Newsletters/" + currentletter.image_name)} />}
-
-            <h2>Past Newsletters</h2>
-
+            <h2 className="section-title">Past Newsletters</h2>
             {pdfFiles && pdfFiles.map((letter, index) => (
-
-                <div key={letter.image_name}>
+                <div className="newsletter-item" key={letter.image_name}>
                     <PdfLoader fileName={pdfFiles[index]} />
-                    {pdfFiles.length > 0 && <button onClick={() => { setCurrent(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf") }}>Set {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} To Current Letter</button>}
-                    {pdfFiles.length > 0 && <button onClick={() => { deleteLetter(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf") }}>Delete {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} </button>}
+                    {pdfFiles.length > 0 && <button className="button" onClick={() => setCurrent(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf")}>Set {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} To Current Letter</button>}
+                    {pdfFiles.length > 0 && <button className="button" onClick={() => deleteLetter(pdfFiles[index].split('/')[3].split('.')[0] + ".pdf")}>Delete {pdfFiles[index].split('/')[3].split('.')[0] + ".pdf"} </button>}
                 </div>
-
             ))}
-
-            <h2>Upload Newsletter</h2>
-            <input type="file" accept="application/pdf" onChange={(e) => (handleFileInput(e))} /><br />
-
-            <button onClick={() => { uploadFile() }}>Upload</button>
-
-            {errorMessage}
-
+            <h2 className="section-title">Upload Newsletter</h2>
+            <input className="file-input" type="file" accept="application/pdf" onChange={(e) => handleFileInput(e)} /><br />
+            <button className="button" onClick={() => uploadFile()}>Upload</button>
+            <p className="error-message">{errorMessage}</p>
         </div>
-    )
+    );
+    // yo
+
 }

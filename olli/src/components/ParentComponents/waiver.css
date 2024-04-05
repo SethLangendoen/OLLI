@@ -1,0 +1,93 @@
+/* Signature canvas styles */
+.signature-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.signature-canvas {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* Remove margin-bottom */
+}
+
+/* Button container styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Button styles */
+.signature-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    /* Adjust margin to create space between buttons */
+    background-color: #6c5c73;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signature-button:hover {
+    background-color: #8671a5;
+}
+
+/*////////////////////////////////////////////////////////////*/
+.event {
+    width: 80rem;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid black;
+    position: relative; /* Necessary for absolute positioning */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.event-content {
+    padding: 10px;
+}
+
+.event-info {
+    text-align: center; /* Center text horizontally */
+}
+
+.toggle-details {
+    margin-top: 1rem; /* Add space above the button */
+}
+
+.event-image {
+    width: 50%; /* Set maximum width for the image */
+    height: 50%; /* Set maximum height for the image */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.event-image img {
+    max-width: 100%; /* Set maximum width for the image */
+    max-height: 100%; /* Set maximum height for the image */
+}
+
+.event::before,
+.event::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px; /* Adjust as needed */
+    background-color: #6c5c73; /* Desired padding color */
+}
+
+.event::before {
+    left: -10px;
+}
+
+.event::after {
+    right: -10px;
+}
+
+

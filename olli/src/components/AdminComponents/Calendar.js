@@ -317,7 +317,6 @@ const MyCalendar = ({ user: initialUser }) => {
             <h1>You have selected this event: </h1>
             <h2>{selectedEvent.title}</h2>
             <p>{selectedEvent.descrip}</p>
-            <p>{selectedEvent.short_descrip}</p>
 
             <p>Start: {selectedEvent.start.toLocaleString()}</p>
             <p>End: {selectedEvent.end.toLocaleString()}</p>

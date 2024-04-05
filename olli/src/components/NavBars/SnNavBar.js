@@ -1,7 +1,6 @@
 import React from 'react'
 import NavBar from "./NewNavBar.js";
 import NavButton from "./NavButton.js";
-import calendar from "./calendar.png";
 import crown from "./crown.png";
 import chat from "./chat.png";
 import useSpeechSynthesis from '../HomeComponents/Helpers/TextToSpeech';
@@ -17,10 +16,10 @@ export default function SnNavBar({ user }) {
             scrollLink={true}
             onMouseOver={() => { Speak('Game') }}
         />,
-        <img src={chat} alt="Logo" className="chat" linkTo={"/chat"} />,
+        <img src={chat} alt="Logo" className="chat" linkTo={"/snPage/chat"} />,
         <NavButton
             name={"Chat"}
-            linkTo={"/chat"}
+            linkTo={"/snPage/chat"}
             scrollLink={false}
             onMouseOver={() => { Speak('Chat') }}
         />

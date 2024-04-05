@@ -25,12 +25,6 @@
   /* Prevent text from wrapping */
 }
 
-.eventSlider {
-  margin-top: 500px;
-  position: relative;
-}
-
-
 @keyframes fadeInUp {
   to {
     opacity: 1;

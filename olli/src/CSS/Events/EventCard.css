@@ -45,6 +45,7 @@
 }
 
 .cardContainer {
+    margin-top: 10rem;
     border-radius: 1.5625rem;
     /* 25px / 16px = 1.5625rem */
     background-color: rgb(255, 255, 255);

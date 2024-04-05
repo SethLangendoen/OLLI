@@ -48,36 +48,27 @@ export default function EventsList({ events, user }) {
         }
     }
 
-
-
-
-
-
     return (
         <div className="events-container">
             {events && (
                 <div>
-                    <h1>Upcoming Events:</h1>
-                    <div>
+                    <h1 className="events-title">Upcoming Events:</h1>
+                    <div className="events-wrapper">
                         {events.map((event) => (
                             <div key={event.id} className="event-card">
-                                <h2>{event.title}</h2>
-                                <p>{event.descrip}</p>
-                                <p>{event.short_descrip}</p>
-                                <p>Start: {event.start.toLocaleString()}</p>
-                                <p>End: {event.end.toLocaleString()}</p>
-
-
+                                <h2 className="event-title">{event.title}</h2>
+                                <p className="event-description">{event.descrip}</p>
+                                <p className="event-time">Start: {event.start.toLocaleString()}</p>
+                                <p className="event-time">End: {event.end.toLocaleString()}</p>
+    
                                 <Participants participants={participants} title={event.title} />
-
-
-
-                                {/** Iterate through images and find the one corresponding to event.path */}
+    
+                                {/* Iterate through images and find the one corresponding to event.path */}
                                 {event.path && file.map((imagePath) => {
                                     try {
                                         const imageName = imagePath.split('/')[3].split('.')[0];
                                         // const imageSuffix = imagePath.split('.')[2]
-
+    
                                         if (event.path.includes(imageName)) {
                                             return (
                                                 <img
@@ -100,5 +91,4 @@ export default function EventsList({ events, user }) {
             )}
         </div>
     );
-
 }

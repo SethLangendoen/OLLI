@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import "../../CSS/Waiver/WaiverBuilder.css"
+
 export default function WaiverBuilder() {
     const [user, setUser] = useState(null);
     const [title, setTitle] = useState('');
@@ -10,9 +11,6 @@ export default function WaiverBuilder() {
     const [signed, setSigned] = useState([])
     const [sWaivers, setsWaivers] = useState([])
     const [final, setFinal] = useState([])
-
-    console.log(final)
-
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -26,12 +24,9 @@ export default function WaiverBuilder() {
 
     useEffect(() => {
         if (signed.length > 0) {
-
             signed.forEach(element => {
                 getWaivers(element.waiver_title)
             });
-
-
         }
     }, [signed])
 
@@ -40,7 +35,6 @@ export default function WaiverBuilder() {
             const uniqueArray = Array.from(new Map(sWaivers.map(obj => [JSON.stringify(obj), obj])).values());
             setFinal(uniqueArray)
         }
-
     }, [sWaivers])
 
     async function getWaivers(title) {
@@ -48,7 +42,6 @@ export default function WaiverBuilder() {
         const data = await response.json()
         setsWaivers(prev => [...prev, data])
     }
-
 
     const convertBlobToDataURI = (blob) => {
         return new Promise((resolve, reject) => {
@@ -92,7 +85,6 @@ export default function WaiverBuilder() {
     }
 
     const handleCreateWaiver = () => {
-
         if (title === "" || description === "") {
             alert("You Must Enter a Title and Description")
             return
@@ -111,50 +103,38 @@ export default function WaiverBuilder() {
     };
 
     return (
-        <div>
-            <h1>Select Title of The Waiver</h1>
-            <select name="" id="" onChange={(e) => { setTitle(e.target.value) }}>
+        <div className="waiver-builder-container">
+            <h1 className="title">Select Title of The Waiver</h1>
+            <select className="select" onChange={(e) => { setTitle(e.target.value) }}>
                 <option value="" selected disabled>Select an option</option>
                 {events && events.map(event => (
                     <option value={event.title}>{event.title}</option>
                 ))}
             </select>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} disabled />
-            <h1>Enter Description of the Waiver</h1>
-            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <button onClick={handleCreateWaiver}>Create Waiver</button>
-            <h1>Current Waivers</h1>
+            <input className="inputlol" type="text" placeholder='Select an option above' value={title} onChange={(e) => setTitle(e.target.value)} disabled />
+            <h1 className="title">Enter Description of the Waiver</h1>
+            <input className="inputlol" type="text" placeholder='Write a description for the waiver' value={description} onChange={(e) => setDescription(e.target.value)} />
+            <button className="createbutton" onClick={handleCreateWaiver}>Create Waiver</button>
+            <h1 className="title">Current Waivers</h1>
             {waivers && waivers.map(wavier => (
-                <div>
-                    <h2>{wavier.title}</h2><br />
-                    <p>{wavier.description}</p><br />
-                    <h2>Date:</h2>
-
-
-                    <h2>Parent Signature</h2>
-                    <SignatureCanvas
-                        penColor="black"
-                        canvasProps={{ width: 300, height: 150, className: 'signature-canvas' }}
-                    />
-                    <button onClick={() => {
+                <div className="waiver-item">
+                    <h2 className="waiver-title">{wavier.title}</h2>
+                    <p className="waiver-description">{wavier.description}</p>
+                    <button className="delete-button" onClick={() => {
                         fetcher(`/waiver/deleteWaiver/${wavier.title}`, "DELETE", user.accessToken, {}, null, () => { alert("Could not Delete Waiver") });
                         fetcher("/waiver/getAllWaivers", "GET", user.accessToken, null, setWaivers, () => { alert("Could Not Fetch Waivers") })
-
-
-                    }}>Delete Waviver {wavier.title}</button>
-
+                    }}>Delete Waiver {wavier.title}</button>
                 </div>
             ))}
-            <h1>Signed Waivers</h1>
+            <h1 className="title">Signed Waivers</h1>
             {final && final.map((wavier, index) => (
-                <div>
-                    <h2>{wavier.title}</h2><br />
-                    <p>{signed[index].email} has Signed this Waiver</p>
-                    <p>{wavier.description}</p><br />
-                    <img src={wavier.signature} alt="" />
+                <div className="signed-waiver">
+                    <h2 className="signed-waiver-title">{wavier.title}</h2>
+                    <p className="signed-waiver-email">{signed[index].email} has Signed this Waiver</p>
+                    <p className="signed-waiver-description">{wavier.description}</p>
+                    <img className="signed-waiver-image" src={wavier.signature} alt="" />
                 </div>
             ))}
-
         </div>
     );
 }
