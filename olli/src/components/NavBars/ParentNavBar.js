@@ -27,7 +27,7 @@ export default function ParentNavBar({ user }) {
 
         <NavButton
             name={"Chat"}
-            linkTo={"/chat"}
+            linkTo={"/parentchat"}
             scrollLink={false}
         />
     ]

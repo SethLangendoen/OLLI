@@ -9,17 +9,17 @@ export default function SnNavBar({ user }) {
     const Speak = useSpeechSynthesis();
 
     const buttons = [
-        <img src={crown} alt="Logo" className="crown" linkTo={"game-container"} />,
+        <img src={crown} alt="Logo" className="crown" linkTo={"snPage"} />,
         <NavButton
             name={"Game"}
-            linkTo={"game-container"}
-            scrollLink={true}
+            linkTo={"/snPage"}
+            scrollLink={false}
             onMouseOver={() => { Speak('Game') }}
         />,
-        <img src={chat} alt="Logo" className="chat" linkTo={"/chat"} />,
+        <img src={chat} alt="Logo" className="chat" linkTo={"/SNchat"} />,
         <NavButton
             name={"Chat"}
-            linkTo={"/chat"}
+            linkTo={"/SNchat"}
             scrollLink={false}
             onMouseOver={() => { Speak('Chat') }}
         />

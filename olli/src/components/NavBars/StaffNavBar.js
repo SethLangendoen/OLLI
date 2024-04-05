@@ -5,13 +5,18 @@ export default function StaffNavBar() {
     const [user, setUser] = useState()
     const buttons = [
         <NavButton
-            name={"Chat"}
-            linkTo={"/chat"}
+            name={"Clock In/Out"}
+            linkTo={"/staff"}
             scrollLink={false}
         />,
         <NavButton
             name={"User Settings"}
-            linkTo={"/parentuserSettings"}
+            linkTo={"/staffSettings"}
+            scrollLink={false}
+        />,
+        <NavButton
+            name={"Chat"}
+            linkTo={"/staffchat"}
             scrollLink={false}
         />
     ]

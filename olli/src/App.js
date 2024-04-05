@@ -10,6 +10,7 @@ import Tetris from './components/Games/Tetris.js';
 import AdminPage from './components/Pages/AdminPage.js';
 import ParentUserSettingPage from './components/Pages/ParentUserSettingPage.js';
 import AdminUserSettingPage from './components/Pages/AdminUserSettingPage.js';
+import StaffUserSettingPage from './components/Pages/StaffUserSettingPage.js';
 import Calendar from './components/AdminComponents/Calendar.js';
 import SNPage from './components/Pages/SNPage.js';
 import ParentCalendar from './components/ParentComponents/ParentCalendar.js';
@@ -18,8 +19,9 @@ import ChatRoom from './components/Pages/ChatRoom.js';
 import StaffPage from './components/Pages/StaffPage.js';
 import ManageNewslettersPage from './components/Pages/ManageNewsletterspage.js';
 import ManageStaff from './components/AdminComponents/ManageStaff.js';
-
-
+import StaffChatRoom from './components/Pages/StaffChatRoom.js';
+import SNChatRoom from './components/Pages/SNChatRoom.js';
+import ParentChatRoom from './components/Pages/ParentChatRoom.js';
 
 
 export default function App() {
@@ -51,7 +53,21 @@ export default function App() {
           element={
             <AdminPage user={user} setUser={setUser} />
           } />
-
+        <Route
+          exact path='/staffchat'
+          element={
+            <StaffChatRoom user={user} setUser={setUser} />
+          } />
+          <Route
+          exact path='/SNchat'
+          element={
+            <SNChatRoom user={user} setUser={setUser} />
+          } />
+          <Route
+          exact path='/parentchat'
+          element={
+            <ParentChatRoom user={user} setUser={setUser} />
+          } />
         <Route
           exact path='/parentuserSettings'
           element={
@@ -62,6 +78,17 @@ export default function App() {
           exact path='/adminuserSettings'
           element={
             <AdminUserSettingPage />
+          } />
+
+        <Route
+          exact path='/staffSettings'
+          element={
+            <StaffUserSettingPage />
+          } />
+        <Route
+          exact path='/clockinout'
+          element={
+            <StaffPage />
           } />
         <Route
           exact path='/manageNewsletters'

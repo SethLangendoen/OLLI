@@ -1,0 +1,16 @@
+.staff-page-container {
+    margin-top: 6rem;
+    text-align: center; /* Center all contents horizontally */
+}
+
+.clock-in-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Example color */
+}
+
+.clock-out-title {
+    font-size: 20px;
+    margin-top: 40px; /* Increase space between Clock In and Clock Out */
+    color: #333; /* Example color */
+}
