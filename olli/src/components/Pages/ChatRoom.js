@@ -59,6 +59,7 @@ function ChatRoom() {
     // Render chat interface if connected, otherwise render input fields and button
     return (
         <div>
+            <ParentNavBar user={user} />
             <div className="chat-room">
                 <div className="chat-container">
                     {!isConnected ? (

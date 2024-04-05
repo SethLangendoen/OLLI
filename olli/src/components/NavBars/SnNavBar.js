@@ -16,10 +16,10 @@ export default function SnNavBar({ user }) {
             scrollLink={true}
             onMouseOver={() => { Speak('Game') }}
         />,
-        <img src={chat} alt="Logo" className="chat" linkTo={"/snPage/chat"} />,
+        <img src={chat} alt="Logo" className="chat" linkTo={"/chat"} />,
         <NavButton
             name={"Chat"}
-            linkTo={"/snPage/chat"}
+            linkTo={"/chat"}
             scrollLink={false}
             onMouseOver={() => { Speak('Chat') }}
         />
