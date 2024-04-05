@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
     //socketPath: '/cloudsql/se3350-group-40-416518:us-central1:olli',
     host: "localhost",
     user: 'root',
-    password: 'Sabi5437',
+    password: '53Th1235@',
     database: 'olli',
 }).promise();
 
@@ -82,6 +82,7 @@ async function deleteEvent(title) {
 async function getAllEvents() {
     try {
         const [rows] = await connection.query('SELECT * FROM events');
+        
         return rows;
     } catch (e) {
         console.log("Error fetching all events: " + e);

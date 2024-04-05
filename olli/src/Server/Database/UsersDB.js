@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: 'root',
     connectTimeout: 20000,
-    password: 'Sabi5437',
+    password: '53Th1235@',
     database: 'olli', // Replace 'your_database_name' with the actual database name
 }).promise();
 

@@ -54,8 +54,6 @@ const MyCalendar = ({ user: initialUser }) => {
         return;
       }
 
-
-      console.log('This is the data: ' + JSON.stringify(data))
       // setEvents(JSON.stringify(data)); // [{}] // data is an array of objects I believe. 
       // createEvents(JSON.stringify(data));
       if (Array.isArray(data)) { // Check if data is an array
@@ -65,7 +63,6 @@ const MyCalendar = ({ user: initialUser }) => {
           start: new Date(event.start),
           end: new Date(event.end)
         }));
-
 
         setEvents(eventsWithDateObjects); // Set events to the array data
 

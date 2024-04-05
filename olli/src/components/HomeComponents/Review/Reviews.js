@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import "../../../CSS/Review/ReviewSection.css"
+import Rating from 'react-rating';
 
 export default function Reviews({ user: initialUser }) {
     const [ratings, setRatings] = useState([]); // holds all the reviews as an array. 
@@ -18,28 +19,23 @@ export default function Reviews({ user: initialUser }) {
         getAllReviews();
     }, [user])
 
-    async function getAllReviews() {
+    const getAllReviews = async () => {
         console.log('updating Reviews');
         try {
-            console.log('trying!');
             const response = await fetch('/review/getRatings', {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(response);
             if (!response.ok) {
                 throw new Error('Failed to fetch reviews');
             }
-            console.log('WTDFFSDFASDF');
+
             const data = await response.json();
             console.log('This is the review data: ', data);
-            if (Array.isArray(data)) {
-                setRatings(data);
-            } else {
-                setRatings([data]);
-            }
+            setRatings(data); 
+
         } catch (error) {
             console.error('Error fetching reviews:', error);
         }
@@ -80,13 +76,26 @@ export default function Reviews({ user: initialUser }) {
     }
 
     return (
-        <div>
+        <div className='reviewsComponent'>
             <h1>Like What We Do? Leave a review!</h1>
             <div className='reviewsContainer'>
-                <input className='reviewTextBox' type='textbox' maxLength={300} onChange={(e) => setReviewData(e.target.value)} />
-                <button onClick={handleAddReview}>Submit Review!</button>
+                <div className='reviewInputs'>
+                    <div className = 'starRating'>
+                        <p className = 'ratingText'>Rating:</p>
+                        <Rating
+                            initialRating={rating}
+                            onChange={(value) => setRating(value)}
+                        />
+                    </div>
+                    <textarea className='reviewTextBox' placeholder="Enter review here..." maxLength={300} onChange={(e) => setReviewData(e.target.value)}></textarea>
+                    <button onClick={handleAddReview}>Submit Review!</button>
+                </div>
                 {ratings && ratings.map((rating, index) => (
-                    <p key={index}>{rating} + This is a rating!!!</p>
+                    <div className='review' key={index}>
+                        <p>{rating.username} says: {rating.review}</p>
+                        <p className = 'ratingText' >Rating: {<Rating initialRating={rating.rating} readonly={true}/>}</p>
+
+                    </div>
                 ))}
             </div>
         </div>

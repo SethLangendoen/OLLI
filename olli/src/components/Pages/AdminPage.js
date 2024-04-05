@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminNavBar from '../NavBars/AdminNavBar'
 import ManageUsers from '../AdminComponents/ManageUsers'
 import WaiverBuilder from '../WaiverComponents/WaiverBuilder'
+import ManageReviews from '../AdminComponents/ManageReviews'
 
 export default function AdminPage() {
     const [snUsers, setSNUsers] = useState([])
@@ -47,6 +48,7 @@ export default function AdminPage() {
             <AdminNavBar user={user} />
             <ManageUsers user={user} />
             <WaiverBuilder />
+            <ManageReviews /> 
         </div>
     );
 }

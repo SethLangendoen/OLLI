@@ -9,7 +9,6 @@ router.use(express.json());
 // Route to insert event
 router.post('/addRating', async (req, res) => {
     const { username, review, rating } = req.body;
-    console.log("Username: " + username + " Review: " + review + " Rating: " + rating);
 
     try {
         await reviewDB.addReview(username, review, rating);
@@ -23,9 +22,9 @@ router.post('/addRating', async (req, res) => {
 
 // delete event using event title (primary key)
 router.delete('/deleteRating', async (req, res) => {
-    const { username } = req.body;
+    const { username, review } = req.body;
     try {
-        await reviewDB.deleteReview(username);
+        await reviewDB.deleteReview(username, review);
         return res.json({ key: "success" });
     } catch (error) {
         console.error('Error deleting rating:', error);
@@ -36,8 +35,9 @@ router.delete('/deleteRating', async (req, res) => {
 
 router.get('/getRatings', async (req, res) => {
     try {
-        console.log('in the getRatings db');
-        res.json(reviewDB.getAllReviews());
+        const reviews = await reviewDB.getAllReviews(); 
+        res.json(reviews);
+
     } catch (error) {
         console.error('Error getting ratings:', error);
         return res.json({ key: "failure" })

@@ -18,9 +18,6 @@ export default function NewsLetterSection() {
 
         })
         const currentData = await response.json();
-        console.log(currentData)
-
-
         setCurrentNewsletter(currentData);
     }
     return (
